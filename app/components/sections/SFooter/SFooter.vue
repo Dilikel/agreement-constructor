@@ -1,3 +1,3 @@
 <template></template>
 
-<style src="./SFooter.css" lang="scss" scoped />
+<style src="./SFooter.scss" lang="scss" scoped />

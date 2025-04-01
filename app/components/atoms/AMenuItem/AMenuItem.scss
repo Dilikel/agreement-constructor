@@ -1,0 +1,18 @@
+.a-menu-item {
+	color: var(--dark-green);
+	font-size: 18px;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	svg {
+		width: 20px;
+		height: 20px;
+	}
+	@media (hover: hover) {
+		&:hover {
+			color: var(--dark-green-hover);
+		}
+	}
+}

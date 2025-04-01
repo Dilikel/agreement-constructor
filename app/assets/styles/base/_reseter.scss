@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Montserrat', sans-serif !important;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow-x: hidden;
+	min-width: 320px;
+}
+body {
+	font-size: 16px;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-transform: none;
+	text-decoration: none;
+}
+
+input {
+	outline: none;
+	border: none;
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
+select {
+	outline: none;
+	border: none;
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+	user-select: none;
+}
+
+iframe {
+	border: 0;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.container {
+	max-width: 1400px;
+	margin: 0 auto;
+}

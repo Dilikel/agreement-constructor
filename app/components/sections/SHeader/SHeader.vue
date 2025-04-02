@@ -2,7 +2,7 @@
 import 'hamburgers/dist/hamburgers.min.css'
 
 const isMenuOpen = ref(false)
-const menuItems = [
+const headerItems = [
 	{
 		name: 'Главная',
 		to: '/',
@@ -26,7 +26,7 @@ const menuItems = [
 		<div class="container">
 			<NuxtLink class="s-header-logo" to="/">Agreement Constructor</NuxtLink>
 			<nav class="s-header-list">
-				<AMenuItem v-for="item in menuItems" :key="item.name" v-bind="item" />
+				<AMenuItem v-for="item in headerItems" :key="item.name" v-bind="item" />
 			</nav>
 			<button
 				class="hamburger hamburger--slider"
@@ -52,7 +52,7 @@ const menuItems = [
 			<Icon name="ci:close-lg" @click="isMenuOpen = false" />
 		</div>
 		<div class="s-mobile-menu-list">
-			<AMenuItem v-for="item in menuItems" :key="item.name" v-bind="item" />
+			<AMenuItem v-for="item in headerItems" :key="item.name" v-bind="item" />
 		</div>
 	</div>
 </template>

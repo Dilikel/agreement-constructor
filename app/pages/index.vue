@@ -1,12 +1,6 @@
 <script setup>
 useHead({
 	title: 'Главная',
-	meta: [
-		{
-			name: 'description',
-			content: 'Создайте публичную оферту без труда',
-		},
-	],
 })
 </script>
 
@@ -14,5 +8,6 @@ useHead({
 	<main>
 		<SHero />
 		<SAdvantages />
+		<SGetAdvantages />
 	</main>
 </template>

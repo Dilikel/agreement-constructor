@@ -1,0 +1,18 @@
+.a-hero-button {
+	background-color: var(--dark-green);
+	color: var(--milk);
+	font-size: 16px;
+	font-weight: 600;
+	padding: 12px 22px;
+	border-radius: 12px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	width: 200px;
+	user-select: none;
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--dark-green-hover);
+		}
+	}
+}

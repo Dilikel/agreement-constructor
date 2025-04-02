@@ -9,6 +9,11 @@ const menuItems = [
 		icon: 'mdi:home-variant',
 	},
 	{
+		name: 'Конструктор',
+		to: '/constructor',
+		icon: 'mdi:clipboard-edit',
+	},
+	{
 		name: 'Личный кабинет',
 		to: '/profile',
 		icon: 'mdi:account-circle',

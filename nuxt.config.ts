@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	srcDir: 'app/',
 	serverDir: 'server/',
-	modules: ['@nuxt/icon', '@pinia/nuxt'],
+	modules: ['@nuxt/icon', '@pinia/nuxt', '@nuxt/image'],
 	components: [
 		{
 			path: '~/components/',

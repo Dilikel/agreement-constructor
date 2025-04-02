@@ -1,0 +1,28 @@
+.s-hero {
+	margin-top: 20px;
+	.container {
+		background: linear-gradient(rgba(0, 0, 0, 0.714), rgba(0, 0, 0, 0.697)),
+			url('/images/hero.webp') center/cover no-repeat;
+		border-radius: 18px;
+		height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 20px;
+		color: var(--milk);
+		max-width: 600px;
+		text-align: center;
+		h1 {
+			font-size: 32px;
+		}
+		p {
+			font-size: 18px;
+		}
+	}
+}

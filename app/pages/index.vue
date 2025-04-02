@@ -1,7 +1,18 @@
 <script setup>
 useHead({
-	title: 'Конструктор публичной оферты',
+	title: 'Главная',
+	meta: [
+		{
+			name: 'description',
+			content: 'Создайте публичную оферту без труда',
+		},
+	],
 })
 </script>
 
-<template></template>
+<template>
+	<main>
+		<SHero />
+		<SAdvantages />
+	</main>
+</template>

@@ -1,0 +1,21 @@
+.m-how-work-card {
+	background-color: var(--milk);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	align-items: center;
+	text-align: center;
+	border-radius: 12px;
+
+	&-number {
+		width: 60px;
+		height: 60px;
+		border: 2px solid var(--dark-green);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 24px;
+	}
+}

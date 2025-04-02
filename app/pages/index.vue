@@ -5,9 +5,9 @@ useHead({
 </script>
 
 <template>
-	<main>
+	<main class="main">
 		<SHero />
 		<SAdvantages />
-		<SGetAdvantages />
+		<SHowWork />
 	</main>
 </template>

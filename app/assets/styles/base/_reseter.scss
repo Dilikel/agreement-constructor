@@ -16,6 +16,7 @@ html,
 body {
 	overflow-x: hidden;
 	min-width: 320px;
+	color: var(--dark-green);
 }
 body {
 	font-size: 16px;
@@ -67,6 +68,13 @@ table {
 .container {
 	max-width: 1280px;
 	margin: 0 auto;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 100px;
 }
 
 @media (max-width: 768px) {

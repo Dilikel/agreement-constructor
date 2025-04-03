@@ -52,7 +52,12 @@ const headerItems = [
 			<Icon name="ci:close-lg" @click="isMenuOpen = false" />
 		</div>
 		<div class="s-mobile-menu-list">
-			<AMenuItem v-for="item in headerItems" :key="item.name" v-bind="item" />
+			<AMenuItem
+				v-for="item in headerItems"
+				:key="item.name"
+				v-bind="item"
+				@click="isMenuOpen = false"
+			/>
 		</div>
 	</div>
 </template>

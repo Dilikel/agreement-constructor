@@ -4,8 +4,6 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	-webkit-tap-highlight-color: transparent;
-	font-family: 'Montserrat', sans-serif !important;
 }
 
 html {
@@ -16,7 +14,6 @@ html,
 body {
 	overflow-x: hidden;
 	min-width: 320px;
-	color: var(--dark-green);
 }
 body {
 	font-size: 16px;
@@ -29,7 +26,6 @@ ul {
 a {
 	text-transform: none;
 	text-decoration: none;
-	color: var(--dark-green);
 }
 
 input {
@@ -64,22 +60,4 @@ iframe {
 table {
 	border-spacing: 0;
 	border-collapse: collapse;
-}
-
-.container {
-	max-width: 1280px;
-	margin: 0 auto;
-}
-
-.main {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 100px;
-}
-
-@media (max-width: 768px) {
-	.container {
-		margin: 0 8px;
-	}
 }

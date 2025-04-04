@@ -1,0 +1,14 @@
+.a-button {
+	background: transparent;
+	border: 2px solid var(--dark-green);
+	padding: 8px 18px;
+	border-radius: 18px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	user-select: none;
+	color: var(--dark-green);
+	&--active {
+		background-color: var(--dark-green);
+		color: var(--milk);
+	}
+}

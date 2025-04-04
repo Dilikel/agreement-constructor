@@ -5,7 +5,7 @@ useHead({
 </script>
 
 <template>
-	<main class="main">
+	<main class="main animate__animated animate__fadeIn">
 		<SHero />
 		<SAdvantages />
 		<SHowWork />

@@ -1,0 +1,14 @@
+.a-input {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	&-input {
+		padding: 10px;
+		border-radius: 12px;
+		border: 1px solid var(--green);
+		width: 100%;
+		font-size: 18px;
+		padding-left: 12px;
+		color: var(--green);
+	}
+}

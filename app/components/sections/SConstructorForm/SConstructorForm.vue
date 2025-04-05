@@ -1,6 +1,7 @@
 <script setup>
 import { agreementConfig } from '~/config/agreementFields'
 import { useAgreementStore } from '~/stores/agreement'
+import { generateAgreementDoc } from '~/utils/generateDoc'
 
 const agreementStore = useAgreementStore()
 const props = defineProps({
@@ -34,6 +35,11 @@ watch(
 	},
 	{ deep: true }
 )
+
+const downloadDoc = () => {
+	const rawData = toRaw(agreementStore.agreement)
+	generateAgreementDoc(rawData)
+}
 </script>
 
 <template>
@@ -73,6 +79,12 @@ watch(
 					@update:modelValue="formData[question.model] = $event"
 				/>
 			</div>
+			<AButton
+				name="Скачать документ"
+				:active="true"
+				@click="downloadDoc"
+				class="s-constructor-form-download-btn"
+			/>
 		</div>
 	</section>
 </template>

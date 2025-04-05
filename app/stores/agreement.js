@@ -4,7 +4,7 @@ export const useAgreementStore = defineStore('AgreementStore', {
 	state: () => ({
 		agreement: {
 			type: 'person',
-			data: [],
+			data: {},
 		},
 	}),
 	actions: {
@@ -16,6 +16,10 @@ export const useAgreementStore = defineStore('AgreementStore', {
 			this.agreement.data = {}
 		},
 		updateDataField(key, value) {
+			// Убедитесь, что данные являются объектом, а не массивом
+			if (!this.agreement.data) {
+				this.agreement.data = {}
+			}
 			this.agreement.data[key] = value
 		},
 	},

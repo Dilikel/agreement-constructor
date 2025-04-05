@@ -17,6 +17,13 @@
 		flex-direction: column;
 		gap: 20px;
 	}
+	&-download-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		align-self: center;
+		width: 300px;
+	}
 	@media (max-width: 768px) {
 		h1 {
 			font-size: 28px;

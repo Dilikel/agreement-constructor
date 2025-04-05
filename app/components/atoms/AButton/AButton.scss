@@ -10,5 +10,10 @@
 	&--active {
 		background-color: var(--dark-green);
 		color: var(--milk);
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--dark-green-hover);
+			}
+		}
 	}
 }

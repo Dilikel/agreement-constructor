@@ -18,7 +18,14 @@ export async function generateAgreementDoc(data) {
 		const doc = new Docxtemplater(zip)
 
 		doc.setData({
-			representativeName: data.data.representativeName,
+			organizationName: data.data.organizationName || '',
+			representativeName: data.data.representativeName || '',
+			organizationType: data.data.organizationType || '',
+			siteUrl: data.data.siteUrl || '',
+			subject: data.data.subject || '',
+			allowedUserRightsLicense: data.data.allowedUserRightsLicense || '',
+			territory: data.data.territory || '',
+			date: data.data.date || '',
 		})
 
 		try {

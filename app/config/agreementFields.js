@@ -76,8 +76,53 @@ export const agreementConfig = {
 					{ label: 'Свой вариант', value: 'custom' },
 				],
 				inputsByOption: {
-					license: [{}],
+					license: [
+						{
+							label: 'Пользователь вправе пользоваться сервисом:',
+							placeholder: 'Исключительно для собственных нужд',
+							model: 'allowedUserRightsLicense',
+						},
+						{
+							label: 'Пользователю запрещается:',
+							placeholder: 'Копировать или изменять код Сервиса',
+							model: 'prohibitedUserRightsLicense',
+						},
+					],
 				},
+			},
+			{
+				type: 'select',
+				question: 'Территория действия:',
+				model: 'territory',
+				options: [
+					{
+						label: 'Весь мир',
+						value: 'world',
+					},
+					{
+						label: 'Российская Федерация',
+						value: 'russia',
+					},
+					{
+						label: 'Свой вариант',
+						value: 'custom',
+					},
+				],
+				inputsByOption: {
+					custom: [
+						{
+							label: 'Укажите страну:',
+							placeholder: 'Россия',
+							model: 'customTerritory',
+						},
+					],
+				},
+			},
+			{
+				type: 'yes-no',
+				question: 'Учетная запись пользователя:',
+				model: 'hasUserAccount',
+				default: 'no',
 			},
 		],
 	},

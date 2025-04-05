@@ -13,8 +13,13 @@ export const useAgreementStore = defineStore('AgreementStore', {
 		},
 		changeType(type) {
 			this.agreement.type = type
+			this.agreement.data = {}
+		},
+		updateDataField(key, value) {
+			this.agreement.data[key] = value
 		},
 	},
+
 	getters: {
 		getAgreement(state) {
 			return state.agreement

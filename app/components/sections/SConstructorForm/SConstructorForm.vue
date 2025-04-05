@@ -1,9 +1,38 @@
 <script setup>
-defineProps({
+import { agreementConfig } from '~/config/agreementFields'
+import { useAgreementStore } from '~/stores/agreement'
+
+const agreementStore = useAgreementStore()
+const props = defineProps({
 	options: Array,
 	type: String,
 })
 const emit = defineEmits(['change'])
+const formData = reactive({})
+const config = computed(
+	() => agreementConfig[props.type] || { inputs: [], questions: [] }
+)
+
+watch(
+	formData,
+	newData => {
+		Object.entries(newData).forEach(([key, value]) => {
+			agreementStore.updateDataField(key, value)
+		})
+	},
+	{ deep: true }
+)
+
+watch(
+	() => props.type,
+	() => {
+		Object.keys(formData).forEach(key => delete formData[key])
+		config.value.questions.forEach(q => {
+			if (q.default) formData[q.model] = q.default
+		})
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>
@@ -13,19 +42,30 @@ const emit = defineEmits(['change'])
 				<h1>Конструктор публичной оферты</h1>
 				<h2>Заполните данные</h2>
 			</div>
+
 			<ASelect
 				:options="options"
 				label="Выберите статус лица, размещающего оферту"
 				@change="emit('change', $event)"
 			/>
-			<div class="s-constructor-form-content" v-if="type === 'person'">
-				<div>
-					<h3>Указать, кто действует от имени юридического лица:</h3>
-					<div class="s-constructor-form-content-action">
-						<AButton name="Нет" />
-						<AButton name="Да" />
-					</div>
-				</div>
+
+			<div class="s-constructor-form-content">
+				<AInput
+					v-for="input in config.inputs"
+					:key="input.model"
+					v-model="formData[input.model]"
+					:label="input.label"
+					:placeholder="input.placeholder"
+				/>
+				<AQuestion
+					v-for="question in config.questions"
+					:key="question.model"
+					v-model="formData[question.model]"
+					:question="question.question"
+					:yesInputs="question.yesInputs || []"
+					:noInputs="question.noInputs || []"
+					:formData="formData"
+				/>
 			</div>
 		</div>
 	</section>

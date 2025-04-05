@@ -16,7 +16,7 @@ export const agreementConfig = {
 				noInputs: [
 					{
 						label: 'Наименование организации:',
-						placeholder: 'ООО "Рога и копыта"',
+						placeholder: 'ООО "Компания"',
 						model: 'organizationName',
 					},
 				],
@@ -42,7 +42,7 @@ export const agreementConfig = {
 					app: [
 						{
 							label: 'Название приложения:',
-							placeholder: 'Рога и копыта',
+							placeholder: 'Название приложения',
 							model: 'appName',
 						},
 						{
@@ -54,7 +54,7 @@ export const agreementConfig = {
 					custom: [
 						{
 							label: 'Название сервиса:',
-							placeholder: 'Рога и копыта',
+							placeholder: 'Название сервиса',
 							model: 'serviceName',
 						},
 						{

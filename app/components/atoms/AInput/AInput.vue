@@ -2,6 +2,10 @@
 defineProps({
 	label: String,
 	placeholder: String,
+	type: {
+		type: String,
+		default: 'text',
+	},
 })
 
 const model = defineModel()
@@ -12,7 +16,12 @@ const model = defineModel()
 		<label for="input" class="a-input-label"
 			><h3>{{ label }}</h3></label
 		>
-		<input v-model="model" class="a-input-input" :placeholder="placeholder" />
+		<input
+			v-model="model"
+			class="a-input-input"
+			:placeholder="placeholder"
+			:type="type"
+		/>
 	</div>
 </template>
 

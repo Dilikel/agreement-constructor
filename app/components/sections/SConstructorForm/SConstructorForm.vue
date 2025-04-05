@@ -2,14 +2,19 @@
 import { agreementConfig } from '~/config/agreementFields'
 import { useAgreementStore } from '~/stores/agreement'
 import { generateAgreementDoc } from '~/utils/generateDoc'
+import { useToast } from 'vue-toastification'
 
 const agreementStore = useAgreementStore()
+const toast = useToast()
 const props = defineProps({
 	options: Array,
 	type: String,
 })
 const emit = defineEmits(['change'])
-const formData = reactive({})
+const formData = reactive({
+	place: '',
+	date: '',
+})
 
 const config = computed(
 	() => agreementConfig[props.type] || { inputs: [], questions: [] }
@@ -38,6 +43,10 @@ watch(
 
 const downloadDoc = () => {
 	const rawData = toRaw(agreementStore.agreement)
+	if (!formData.place || !formData.date) {
+		toast.error('Заполните обязательные поля')
+		return
+	}
 	generateAgreementDoc(rawData)
 }
 </script>
@@ -57,6 +66,19 @@ const downloadDoc = () => {
 			/>
 
 			<div class="s-constructor-form-content">
+				<AInput
+					v-model="formData.place"
+					label="Укажите место публикации"
+					placeholder="г. Москва"
+					required
+				/>
+				<AInput
+					v-model="formData.date"
+					label="Укажите дату"
+					type="date"
+					required
+				/>
+
 				<AInput
 					v-for="input in config.inputs"
 					:key="input.model"

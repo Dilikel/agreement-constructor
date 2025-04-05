@@ -16,7 +16,6 @@ export const useAgreementStore = defineStore('AgreementStore', {
 			this.agreement.data = {}
 		},
 		updateDataField(key, value) {
-			// Убедитесь, что данные являются объектом, а не массивом
 			if (!this.agreement.data) {
 				this.agreement.data = {}
 			}

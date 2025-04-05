@@ -2,8 +2,14 @@
 const props = defineProps({
 	modelValue: String,
 	question: String,
+	type: {
+		type: String,
+		default: 'yes-no',
+	},
+	options: Array,
 	yesInputs: Array,
 	noInputs: Array,
+	inputsByOption: Object,
 	formData: Object,
 })
 
@@ -15,9 +21,10 @@ const updateValue = value => {
 </script>
 
 <template>
-	<div class="a-question">
+	<div class="m-question">
 		<h3>{{ question }}</h3>
-		<div class="a-question-actions">
+
+		<div v-if="type === 'yes-no'" class="m-question-actions">
 			<AButton
 				name="Нет"
 				:active="modelValue === 'no'"
@@ -30,7 +37,15 @@ const updateValue = value => {
 			/>
 		</div>
 
-		<div v-if="modelValue === 'yes'">
+		<div v-if="type === 'select'">
+			<ASelect
+				:options="options"
+				:modelValue="modelValue"
+				@change="updateValue(options.find(opt => opt.value === $event).value)"
+			/>
+		</div>
+
+		<div v-if="type === 'yes-no' && modelValue === 'yes'">
 			<AInput
 				v-for="input in yesInputs"
 				:key="input.model"
@@ -40,9 +55,27 @@ const updateValue = value => {
 			/>
 		</div>
 
-		<div v-if="modelValue === 'no'">
+		<div v-if="type === 'yes-no' && modelValue === 'no'">
 			<AInput
 				v-for="input in noInputs"
+				:key="input.model"
+				v-model="formData[input.model]"
+				:label="input.label"
+				:placeholder="input.placeholder"
+			/>
+		</div>
+
+		<div
+			v-if="
+				type === 'select' &&
+				modelValue &&
+				inputsByOption &&
+				inputsByOption[modelValue]
+			"
+			class="m-question-inputs"
+		>
+			<AInput
+				v-for="input in inputsByOption[modelValue]"
 				:key="input.model"
 				v-model="formData[input.model]"
 				:label="input.label"
@@ -52,4 +85,4 @@ const updateValue = value => {
 	</div>
 </template>
 
-<style src="./AQuestion.scss" lang="scss" scoped />
+<style src="./MQuestion.scss" lang="scss" scoped />

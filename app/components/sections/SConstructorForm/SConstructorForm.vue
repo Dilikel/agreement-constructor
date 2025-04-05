@@ -9,18 +9,9 @@ const props = defineProps({
 })
 const emit = defineEmits(['change'])
 const formData = reactive({})
+
 const config = computed(
 	() => agreementConfig[props.type] || { inputs: [], questions: [] }
-)
-
-watch(
-	formData,
-	newData => {
-		Object.entries(newData).forEach(([key, value]) => {
-			agreementStore.updateDataField(key, value)
-		})
-	},
-	{ deep: true }
 )
 
 watch(
@@ -32,6 +23,16 @@ watch(
 		})
 	},
 	{ immediate: true }
+)
+
+watch(
+	formData,
+	newData => {
+		Object.entries(newData).forEach(([key, value]) => {
+			agreementStore.updateDataField(key, value)
+		})
+	},
+	{ deep: true }
 )
 </script>
 
@@ -57,14 +58,19 @@ watch(
 					:label="input.label"
 					:placeholder="input.placeholder"
 				/>
-				<AQuestion
+
+				<MQuestion
 					v-for="question in config.questions"
 					:key="question.model"
 					v-model="formData[question.model]"
 					:question="question.question"
+					:type="question.type || 'yes-no'"
+					:options="question.options || []"
 					:yesInputs="question.yesInputs || []"
 					:noInputs="question.noInputs || []"
+					:inputsByOption="question.inputsByOption || {}"
 					:formData="formData"
+					@update:modelValue="formData[question.model] = $event"
 				/>
 			</div>
 		</div>

@@ -25,6 +25,7 @@
 		"vue-toastification": "^2.0.0-rc.5"
 	},
 	"devDependencies": {
+		"@types/node": "^22.14.0",
 		"sass": "^1.86.1"
 	}
 }

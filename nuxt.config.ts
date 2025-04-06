@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 			priority: 10,
 		},
 	],
+
 	css: ['~/assets/styles/base/_index.scss'],
 	ssr: false,
 	nitro: {
@@ -31,9 +32,6 @@ export default defineNuxtConfig({
 					additionalData: `@use "~/assets/styles/helpers/_index.scss" as *;`,
 				},
 			},
-		},
-		optimizeDeps: {
-			exclude: ['pdfjs-dist'],
 		},
 	},
 	app: {

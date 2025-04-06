@@ -1,11 +1,8 @@
 <script setup>
 import { agreementConfig } from '~/config/agreementFields'
 import { useAgreementStore } from '~/stores/agreement'
-import { generateAgreementDoc } from '~/utils/generateDoc'
-import { useToast } from 'vue-toastification'
 
 const agreementStore = useAgreementStore()
-const toast = useToast()
 const props = defineProps({
 	options: Array,
 	type: String,
@@ -40,15 +37,6 @@ watch(
 	},
 	{ deep: true }
 )
-
-const downloadDoc = () => {
-	const rawData = toRaw(agreementStore.agreement)
-	if (!formData.place || !formData.date) {
-		toast.error('Заполните обязательные поля')
-		return
-	}
-	generateAgreementDoc(rawData)
-}
 </script>
 
 <template>
@@ -101,12 +89,6 @@ const downloadDoc = () => {
 					@update:modelValue="formData[question.model] = $event"
 				/>
 			</div>
-			<AButton
-				name="Скачать документ"
-				:active="true"
-				@click="downloadDoc"
-				class="s-constructor-form-download-btn"
-			/>
 		</div>
 	</section>
 </template>

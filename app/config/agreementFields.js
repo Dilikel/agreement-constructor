@@ -8,9 +8,19 @@ export const agreementConfig = {
 				default: 'no',
 				yesInputs: [
 					{
+						label: 'Наименование организации:',
+						placeholder: 'ООО "Компания"',
+						model: 'organizationName',
+					},
+					{
 						label: 'ФИО представителя:',
 						placeholder: 'Иванов Иван',
 						model: 'representativeName',
+					},
+					{
+						label: 'Должность представителя:',
+						placeholder: 'Генеральный директор',
+						model: 'representativePosition',
 					},
 				],
 				noInputs: [

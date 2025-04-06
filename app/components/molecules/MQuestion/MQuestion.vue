@@ -52,6 +52,7 @@ const updateValue = value => {
 				v-model="formData[input.model]"
 				:label="input.label"
 				:placeholder="input.placeholder"
+				class="m-question-inputs"
 			/>
 		</div>
 
@@ -62,6 +63,7 @@ const updateValue = value => {
 				v-model="formData[input.model]"
 				:label="input.label"
 				:placeholder="input.placeholder"
+				class="m-question-inputs"
 			/>
 		</div>
 

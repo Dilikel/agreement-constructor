@@ -7,7 +7,6 @@ const agreementStore = useAgreementStore()
 const toast = useToast()
 const downloadMode = ref('docx')
 const iframeSrc = ref('')
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
 function updatePreview() {
 	const rawData = toRaw(agreementStore.agreement)
@@ -42,17 +41,8 @@ function downloadDoc() {
 		<div class="container">
 			<h1>Предпросмотр документа</h1>
 			<div class="s-agreement-preview-pdf-preview">
-				<div v-if="isMobile">
-					<p>
-						Ваш браузер не поддерживает предпросмотр. <br />
-						<AButton
-							name="Открыть PDF"
-							@click="() => window.open(iframeSrc, '_blank')"
-						/>
-					</p>
-				</div>
 				<iframe
-					v-else
+					v-if="iframeSrc"
 					:src="iframeSrc"
 					class="s-agreement-preview-pdf-preview-iframe"
 				/>

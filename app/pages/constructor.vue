@@ -36,7 +36,7 @@ const changeType = value => {
 </script>
 
 <template>
-	<main class="main animate__animated animate__fadeIn">
+	<main class="constructor animate__animated animate__fadeIn">
 		<SConstructorForm :options="options" @change="changeType" :type="type" />
 		<SAgreementPreview />
 	</main>

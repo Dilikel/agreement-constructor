@@ -21,6 +21,13 @@ body {
 	min-height: 100vh;
 }
 
+.constructor {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-height: 100vh;
+}
+
 @media (max-width: 768px) {
 	.container {
 		margin: 0 8px;

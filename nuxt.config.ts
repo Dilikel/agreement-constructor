@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 		},
 	],
 	css: ['~/assets/styles/base/_index.scss'],
-	ssr: false,
+	ssr: true,
 	nitro: {
 		preset: 'vercel-edge',
 		publicAssets: [

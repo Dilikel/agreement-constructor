@@ -12,7 +12,6 @@ const formData = reactive({
 	place: '',
 	date: '',
 })
-
 const config = computed(
 	() => agreementConfig[props.type] || { inputs: [], questions: [] }
 )

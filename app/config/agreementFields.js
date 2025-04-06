@@ -34,7 +34,7 @@ export const agreementConfig = {
 			{
 				type: 'select',
 				question: 'Где размещается оферта (вид сервиса):',
-				model: 'organizationType',
+				model: 'serviceType',
 				default: 'site',
 				options: [
 					{ label: 'Сайт', value: 'site' },
@@ -56,7 +56,7 @@ export const agreementConfig = {
 							model: 'appName',
 						},
 						{
-							label: 'Укажите ссылку на приложение:',
+							label: 'Укажите ссылку для скачивания:',
 							placeholder: 'https://example.com',
 							model: 'appUrl',
 						},
@@ -68,9 +68,9 @@ export const agreementConfig = {
 							model: 'serviceName',
 						},
 						{
-							label: 'Укажите ссылку на сервис:',
-							placeholder: 'https://example.com',
-							model: 'serviceUrl',
+							label: 'Описание сервиса:',
+							placeholder: 'Описание сервиса',
+							model: 'serviceDescription',
 						},
 					],
 				},
@@ -86,6 +86,13 @@ export const agreementConfig = {
 					{ label: 'Свой вариант', value: 'custom' },
 				],
 				inputsByOption: {
+					services: [
+						{
+							label: 'Перечислите оказываемые услуги:',
+							placeholder: 'Перечислите оказываемые услуги',
+							model: 'servicesProvided',
+						},
+					],
 					license: [
 						{
 							label: 'Пользователь вправе пользоваться сервисом:',
@@ -96,6 +103,20 @@ export const agreementConfig = {
 							label: 'Пользователю запрещается:',
 							placeholder: 'Копировать или изменять код Сервиса',
 							model: 'prohibitedUserRightsLicense',
+						},
+					],
+					sales: [
+						{
+							label: 'Перечислите продаваемые товары:',
+							placeholder: 'Перечислите продаваемые товары',
+							model: 'productsSold',
+						},
+					],
+					custom: [
+						{
+							label: 'Укажите предмет договора:',
+							placeholder: 'Укажите предмет договора',
+							model: 'customSubject',
 						},
 					],
 				},

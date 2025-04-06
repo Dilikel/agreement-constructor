@@ -1,3 +1,25 @@
+function getServiceType(d) {
+	if (d.serviceType === 'site') {
+		return `1.1.4. Сервис - веб-сайт, расположенный в сети интернет по адресу ${
+			d.siteUrl || '-'
+		} (далее - «Сервис»).`
+	}
+
+	if (d.serviceType === 'app') {
+		return `1.1.4. Сервис - программное обеспечение ${
+			d.appName || '-'
+		}, доступное для скачивания в сети интернет по адресу ${
+			d.appUrl || '-'
+		} (далее - «Сервис»).`
+	}
+
+	if (d.serviceType === 'custom') {
+		return `1.1.4. Сервис - ${d.serviceName || '-'}, ${
+			d.serviceDescription || '-'
+		} (далее - «Сервис»).`
+	}
+}
+
 export const agreementPdfTemplates = {
 	person: d => {
 		const hasRepresentative = d.hasRepresentative === 'yes'
@@ -38,12 +60,33 @@ export const agreementPdfTemplates = {
 					},
 				],
 			},
-			{ text: '1. Термины', style: 'sectionTitle' },
+			{
+				stack: [
+					{ text: '1. Термины', style: 'sectionTitle' },
+					{
+						text: '1.1. В целях единого толкования и понимания, нижеприведенные термины используются в следующем значении:',
+						style: 'paragraph',
+					},
+					{
+						text: '1.1.1. Акцепт публичной оферты полное и безоговорочное принятие Пользователем условий настоящей публичной Оферты (далее «Акцепт»).',
+						style: 'paragraph',
+					},
+					{
+						text: '1.1.2. Договор возмездное соглашение между Администрацией и Пользователем, заключенное посредством Акцепта публичной Оферты (далее - «Договор» или «Оферта», в зависимости от контекста).',
+						style: 'paragraph',
+					},
+					{
+						text: '1.1.3. Пользователь физическое лицо, заключившее с Администрацией Договор на условиях, содержащихся в настоящей публичной Оферте (далее «Пользователь»).',
+						style: 'paragraph',
+					},
+					{ text: getServiceType(d), style: 'paragraph' },
+				],
+			},
 			{
 				stack: [
 					{
-						text: '1.1. В целях единого толкования и понимания, нижеприведенные термины используются в следующем значении:\n1.1.1. Акцепт публичной оферты полное и безоговорочное принятие Пользователем условий настоящей публичной Оферты (далее «Акцепт»).\n1.1.2. Договор возмездное соглашение между Администрацией и Пользователем, заключенное посредством Акцепта публичной Оферты (далее - «Договор» или «Оферта», в зависимости от контекста).\n1.1.3. Пользователь физическое лицо, заключившее с Администрацией Договор на условиях, содержащихся в настоящей публичной Оферте (далее «Пользователь»).',
-						style: 'paragraph',
+						text: '2. Предмет договора и общие положение',
+						style: 'sectionTitle',
 					},
 				],
 			},
@@ -51,73 +94,6 @@ export const agreementPdfTemplates = {
 	},
 
 	ip: d => {
-		const serviceUrl =
-			d.organizationType === 'site'
-				? d.siteUrl
-				: d.organizationType === 'app'
-				? d.appUrl
-				: d.serviceUrl
-
-		return [
-			{ text: 'ПУБЛИЧНАЯ ОФЕРТА', style: 'docTitle' },
-
-			{
-				columns: [
-					{ text: `Место публикации: ${d.place || '-'}`, style: 'docMeta' },
-					{
-						text: `Дата: ${d.date || '-'}`,
-						style: 'docMeta',
-						alignment: 'right',
-					},
-				],
-				margin: [0, 0, 0, 20],
-			},
-
-			{ text: '1. ИНФОРМАЦИЯ ОБ ОРГАНИЗАЦИИ', style: 'sectionHeader' },
-			{
-				table: {
-					widths: ['40%', '*'],
-					body: [
-						['Наименование организации', d.organizationName || '-'],
-						['Тип размещения оферты', d.organizationType || '-'],
-						['Ссылка на ресурс', serviceUrl || '-'],
-					],
-				},
-				layout: 'lightHorizontalLines',
-				margin: [0, 0, 0, 15],
-			},
-
-			{ text: '2. ПРЕДСТАВИТЕЛЬСТВО', style: 'sectionHeader' },
-			{
-				text: `Представитель: ${d.representativeName || '-'}`,
-				style: 'paragraph',
-			},
-
-			{ text: '3. ПРЕДМЕТ ДОГОВОРА', style: 'sectionHeader' },
-			{
-				text: d.subject || '-',
-				style: 'paragraph',
-			},
-
-			{ text: '4. УСЛОВИЯ ЛИЦЕНЗИИ', style: 'sectionHeader' },
-			{
-				ul: [
-					d.allowedUserRightsLicense &&
-						`Разрешено: ${d.allowedUserRightsLicense}`,
-					d.prohibitedUserRightsLicense &&
-						`Запрещено: ${d.prohibitedUserRightsLicense}`,
-				].filter(Boolean),
-				style: 'paragraph',
-			},
-
-			{ text: '5. ТЕРРИТОРИЯ ДЕЙСТВИЯ', style: 'sectionHeader' },
-			{
-				text:
-					d.territory === 'custom'
-						? `Территория: ${d.customTerritory || '-'}`
-						: `Территория: ${d.territory || '-'}`,
-				style: 'paragraph',
-			},
-		]
+		return []
 	},
 }

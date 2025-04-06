@@ -32,6 +32,9 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		optimizeDeps: {
+			exclude: ['pdfjs-dist'],
+		},
 	},
 	app: {
 		head: {

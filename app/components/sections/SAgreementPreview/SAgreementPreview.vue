@@ -1,13 +1,11 @@
 <script setup>
 import { useAgreementStore } from '~/stores/agreement'
 import { useToast } from 'vue-toastification'
-import { generateAgreementDoc } from '~/utils/generateDoc'
-import { downloadAgreementPdf, getAgreementPdfBlob } from '~/utils/generatePdf'
+import { getAgreementPdfBlob } from '~/utils/generatePdf'
 
 const agreementStore = useAgreementStore()
 const toast = useToast()
 const downloadMode = ref('docx')
-
 const iframeSrc = ref('')
 
 function updatePreview() {
@@ -29,8 +27,9 @@ function downloadDoc() {
 		toast.error('Заполните обязательные поля')
 		return
 	}
+
 	downloadMode.value === 'docx'
-		? generateAgreementDoc(rawData)
+		? toast.info('Пока не реализовано')
 		: downloadAgreementPdf(rawData, toast)
 }
 </script>

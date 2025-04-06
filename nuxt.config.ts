@@ -13,7 +13,6 @@ export default defineNuxtConfig({
 			priority: 10,
 		},
 	],
-
 	css: ['~/assets/styles/base/_index.scss'],
 	ssr: false,
 	nitro: {

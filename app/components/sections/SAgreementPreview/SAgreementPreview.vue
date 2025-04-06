@@ -21,6 +21,8 @@ watch(
 	{ deep: true, immediate: true }
 )
 
+function convertToDocx() {}
+
 function downloadDoc() {
 	const rawData = toRaw(agreementStore.agreement)
 	if (!rawData.data.place || !rawData.data.date) {

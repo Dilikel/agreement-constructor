@@ -1,0 +1,31 @@
+.a-form-error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 1.5rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	text-align: center;
+	font-weight: 700;
+	background-color: #ff5252;
+	box-shadow: 0 4px 6px rgba(255, 82, 82, 0.4);
+	color: white;
+	&-icon {
+		font-size: 2.3rem;
+	}
+	p {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		padding: 0.75rem;
+	}
+	@media (max-width: 640px) {
+		padding: 10px;
+		font-size: 0.75rem;
+		line-height: 1.25rem;
+	}
+}

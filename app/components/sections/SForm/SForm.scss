@@ -1,0 +1,52 @@
+.s-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 80vh;
+	padding: 2rem;
+
+	&-content {
+		background-color: #fff;
+		border-radius: 2rem;
+		padding: 3rem 2.2rem;
+		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+		max-width: 400px;
+		width: 100%;
+		transition: all 0.3s ease;
+
+		&:hover {
+			box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+		}
+
+		h2 {
+			font-size: 2rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+
+		p {
+			font-size: 1rem;
+			color: #555;
+			margin-bottom: 2rem;
+			text-align: center;
+		}
+
+		.MAuthFields {
+			margin-bottom: 1.5rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		padding: 0 10px;
+		h2 {
+			font-size: 1.8rem;
+		}
+		p {
+			font-size: 0.9rem;
+		}
+		&-content {
+			padding: 3rem 1rem;
+		}
+	}
+}

@@ -7,7 +7,7 @@ definePageMeta({
 })
 
 useHead({
-	title: 'Вход',
+	title: 'Регистрация',
 })
 
 const isLoading = ref(false)
@@ -25,31 +25,54 @@ const fields = [
 		placeholder: 'Введите email',
 	},
 	{
+		id: 'name',
+		type: 'text',
+		label: 'Имя',
+		placeholder: 'Введите имя',
+	},
+	{
 		id: 'password',
 		type: 'password',
 		label: 'Пароль',
 		placeholder: 'Введите пароль',
 	},
+	{
+		id: 'confirmPassword',
+		type: 'password',
+		label: 'Подтвердите пароль',
+		placeholder: 'Введите пароль еще раз',
+	},
 ]
 
-async function loginUser(formData) {
-	if (!formData.email || !formData.password) {
+async function registerUser(formData) {
+	if (!formData.email || !formData.password || !formData.name) {
 		toast.error('Заполните все поля!')
+		return
+	}
+	if (formData.password !== formData.confirmPassword) {
+		message.value = 'Пароли не совпадают'
+		toast.error(message.value)
 		return
 	}
 
 	isLoading.value = true
 	message.value = ''
 
-	await $fetch(`${config.public.API_URL}/auth`, {
+	await $fetch(`${config.public.API_URL}/register`, {
 		method: 'POST',
-		body: { email: formData.email, password: formData.password },
+		body: {
+			email: formData.email,
+			password: formData.password,
+			name: formData.name,
+			agreement: [],
+			drafts: [],
+		},
 	})
 		.then(response => {
 			token.value = response.token
 			userStore.setUser(response.data)
 			toast.success('Вы успешно вошли в аккаунт!')
-			navigateTo('profile')
+			navigateTo('/profile')
 		})
 		.catch(error => {
 			message.value =
@@ -65,15 +88,15 @@ async function loginUser(formData) {
 <template>
 	<main>
 		<SForm
-			title="Добро пожаловать!"
-			text="Пожалуйста, войдите в свою учетную запись"
+			title="Регистрация"
+			text="Создайте новую учетную запись"
 			:fields="fields"
 			:isLoading="isLoading"
 			:message="message"
-			linkTitle="Еще нет аккаунта?"
-			to="/signup"
-			linkText="Зарегистрироваться"
-			@submit="loginUser"
+			linkTitle="Уже есть аккаунт?"
+			to="/login"
+			linkText="Войти"
+			@submit="registerUser"
 		/>
 	</main>
 </template>

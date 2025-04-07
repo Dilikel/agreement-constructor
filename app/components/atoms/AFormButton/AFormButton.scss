@@ -1,0 +1,16 @@
+.a-form-button {
+	background-color: var(--dark-green);
+	color: var(--milk);
+	padding: 12px 22px;
+	border-radius: 12px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	width: 100%;
+	user-select: none;
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--dark-green-hover);
+		}
+	}
+}

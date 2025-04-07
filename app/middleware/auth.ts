@@ -10,6 +10,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
 	}
 
 	if ((to.path === '/login' || to.path === '/signup') && token.value) {
-		return navigateTo('/')
+		return navigateTo('/profile')
 	}
 })

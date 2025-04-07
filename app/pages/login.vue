@@ -74,6 +74,7 @@ async function loginUser(formData) {
 			to="/signup"
 			linkText="Зарегистрироваться"
 			@submit="loginUser"
+			buttonText="Войти"
 		/>
 	</main>
 </template>

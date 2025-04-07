@@ -2,6 +2,7 @@
 const props = defineProps({
 	fields: Array,
 	isLoading: Boolean,
+	buttonText: String,
 })
 const emit = defineEmits(['submit'])
 
@@ -28,7 +29,7 @@ const handleSubmit = () => {
 			v-model="formData[field.id]"
 		/>
 		<AFormButton :isLoading="isLoading">
-			{{ isLoading ? 'Загрузка...' : 'Войти' }}
+			{{ isLoading ? 'Загрузка...' : buttonText }}
 		</AFormButton>
 	</form>
 </template>

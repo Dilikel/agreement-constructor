@@ -97,6 +97,7 @@ async function registerUser(formData) {
 			to="/login"
 			linkText="Войти"
 			@submit="registerUser"
+			buttonText="Зарегистрироваться"
 		/>
 	</main>
 </template>

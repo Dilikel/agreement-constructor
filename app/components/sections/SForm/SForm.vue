@@ -8,6 +8,7 @@ defineProps({
 	linkTitle: String,
 	to: String,
 	linkText: String,
+	buttonText: String,
 })
 const emit = defineEmits(['submit'])
 </script>
@@ -20,6 +21,7 @@ const emit = defineEmits(['submit'])
 			<MFormFields
 				:fields="fields"
 				:isLoading="isLoading"
+				:buttonText="buttonText"
 				@submit="formData => emit('submit', formData)"
 			/>
 			<MAccountPrompt :linkTitle="linkTitle" :to="to" :linkText="linkText" />

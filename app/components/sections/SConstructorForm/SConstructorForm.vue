@@ -19,9 +19,32 @@ const config = computed(
 watch(
 	() => props.type,
 	() => {
-		Object.keys(formData).forEach(key => delete formData[key])
-		config.value.questions.forEach(q => {
-			if (q.default) formData[q.model] = q.default
+		Object.keys(formData).forEach(key => {
+			if (key !== 'place' && key !== 'date') delete formData[key]
+		})
+		const storedData = agreementStore.agreement.data || {}
+		const currentConfig = config.value || { inputs: [], questions: [] }
+		;(currentConfig.inputs || []).forEach(input => {
+			formData[input.model] = storedData[input.model] ?? ''
+		})
+		formData.place ??= storedData.place ?? ''
+		formData.date ??= storedData.date ?? ''
+		;(currentConfig.questions || []).forEach(q => {
+			formData[q.model] = storedData[q.model] ?? q.default ?? ''
+			;(q.yesInputs || []).forEach(input => {
+				formData[input.model] = storedData[input.model] ?? ''
+			})
+			;(q.noInputs || []).forEach(input => {
+				formData[input.model] = storedData[input.model] ?? ''
+			})
+
+			if (q.inputsByOption) {
+				Object.values(q.inputsByOption)
+					.flat()
+					.forEach(input => {
+						formData[input.model] = storedData[input.model] ?? ''
+					})
+			}
 		})
 	},
 	{ immediate: true }

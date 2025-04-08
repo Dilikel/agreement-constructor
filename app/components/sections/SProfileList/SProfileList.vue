@@ -12,13 +12,13 @@ const emit = defineEmits(['change-mode'], ['delete'])
 			<div class="s-profile-list-action">
 				<AButton
 					name="Готовые документы"
-					:active="mode === 'completed'"
-					@click="emit('change-mode', 'completed')"
+					:active="mode === 'agreement'"
+					@click="emit('change-mode', 'agreement')"
 				/>
 				<AButton
 					name="Черновики"
-					:active="mode === 'draft'"
-					@click="emit('change-mode', 'draft')"
+					:active="mode === 'drafts'"
+					@click="emit('change-mode', 'drafts')"
 				/>
 			</div>
 			<MEmpty v-if="!items || items.length === 0" v-auto-animate />

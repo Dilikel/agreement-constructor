@@ -16,13 +16,13 @@ const user = computed(() => useUserStore().getUser)
 const { fetchUser } = useAuth()
 const toast = useToast()
 const token = useCookie('token')
-const mode = ref('completed')
+const mode = ref('agreement')
 const items = ref([])
 
 function getItems() {
 	if (!user.value) return
 	items.value =
-		mode.value === 'completed' ? user.value.agreement : user.value.drafts
+		mode.value === 'agreement' ? user.value.agreement : user.value.drafts
 }
 
 function logout() {
@@ -37,10 +37,10 @@ function changeMode(newMode) {
 }
 
 async function deleteItem(item) {
-	const targetField = mode.value === 'completed' ? 'agreement' : 'drafts'
 	try {
-		await deleteUserAgreement(user, targetField, token.value, item.id)
-		items.value = items.value.filter(i => i.id !== item.id)
+		await deleteUserAgreement(user, mode.value, token.value, item.id)
+		await fetchUser()
+		getItems()
 		toast.success('Документ успешно удален!')
 	} catch (error) {
 		toast.error('Ошибка при удалении документа!')

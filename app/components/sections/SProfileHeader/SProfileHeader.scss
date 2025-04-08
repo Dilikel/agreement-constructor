@@ -1,0 +1,56 @@
+.s-profile-header {
+	padding: 2rem 1rem;
+	background-color: var(--milk);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+	border-radius: 20px;
+	margin: 30px auto;
+	max-width: 1300px;
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	&-user {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		h2 {
+			margin: 0;
+			font-size: 2rem;
+		}
+
+		p {
+			margin: 0;
+			font-size: 1.3rem;
+		}
+	}
+
+	&-action {
+		display: flex;
+		align-items: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.s-profile-header {
+		margin: 30px 8px;
+		.container {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		&-action {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+}

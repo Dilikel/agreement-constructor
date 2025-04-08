@@ -13,6 +13,7 @@
 		@media (hover: hover) {
 			&:hover {
 				background-color: var(--dark-green-hover);
+				border: 2px solid var(--dark-green-hover);
 			}
 		}
 	}

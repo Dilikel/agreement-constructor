@@ -2,6 +2,12 @@
 import { useAgreementStore } from '~/stores/agreement'
 import { useToast } from 'vue-toastification'
 import { getAgreementPdfBlob } from '~/utils/generatePdf'
+import { updateUser } from '~/utils/updateUser'
+
+const props = defineProps({
+	user: Object,
+	token: String,
+})
 
 const agreementStore = useAgreementStore()
 const toast = useToast()
@@ -32,7 +38,8 @@ function downloadDoc() {
 
 	downloadMode.value === 'docx'
 		? toast.info('Пока не реализовано')
-		: downloadAgreementPdf(rawData, toast)
+		: downloadAgreementPdf(rawData, toast),
+		updateUser(props.user, 'agreement', props.token)
 }
 </script>
 

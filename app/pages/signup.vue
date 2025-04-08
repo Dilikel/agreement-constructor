@@ -86,7 +86,7 @@ async function registerUser(formData) {
 </script>
 
 <template>
-	<main>
+	<main class="signup">
 		<SForm
 			title="Регистрация"
 			text="Создайте новую учетную запись"

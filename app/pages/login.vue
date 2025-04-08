@@ -63,7 +63,7 @@ async function loginUser(formData) {
 </script>
 
 <template>
-	<main>
+	<main class="login">
 		<SForm
 			title="Добро пожаловать!"
 			text="Пожалуйста, войдите в свою учетную запись"

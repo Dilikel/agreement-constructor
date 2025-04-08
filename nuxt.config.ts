@@ -4,7 +4,12 @@ export default defineNuxtConfig({
 	devtools: { enabled: false },
 	srcDir: 'app/',
 	serverDir: 'server/',
-	modules: ['@nuxt/icon', '@pinia/nuxt', '@nuxt/image'],
+	modules: [
+		'@nuxt/icon',
+		'@pinia/nuxt',
+		'@nuxt/image',
+		'@formkit/auto-animate/nuxt',
+	],
 	components: [
 		{
 			path: '~/components/',

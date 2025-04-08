@@ -1,0 +1,11 @@
+.a-link-button {
+	background-color: var(--dark-green);
+	color: var(--milk);
+	padding: 12px 22px;
+	border-radius: 18px;
+	border: none;
+	transition: all 0.3s ease-in-out;
+	&:hover {
+		background-color: var(--dark-green-hover);
+	}
+}

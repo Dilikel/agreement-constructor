@@ -28,6 +28,8 @@ const formattedDate = computed(() => {
 function downloadPdf() {
 	downloadAgreementPdf(props.item, toast)
 }
+
+const emit = defineEmits(['delete'])
 </script>
 
 <template>
@@ -44,7 +46,7 @@ function downloadPdf() {
 			<p><strong>Тип:</strong> {{ typeLabel }}</p>
 		</div>
 		<div class="m-profile-card__footer">
-			<AExitButton>Удалить</AExitButton>
+			<AExitButton @click="emit('delete', props.item)">Удалить</AExitButton>
 			<AButton @click="downloadPdf" name="Скачать PDF" :active="true" />
 		</div>
 	</div>

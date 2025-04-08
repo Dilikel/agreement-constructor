@@ -2,6 +2,7 @@
 import { useAuth } from '~/composables/useAuth'
 import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
+import { deleteUserAgreement } from '~/utils/updateUser'
 
 definePageMeta({
 	middleware: ['auth'],
@@ -35,6 +36,18 @@ function changeMode(newMode) {
 	mode.value = newMode
 }
 
+async function deleteItem(item) {
+	const targetField = mode.value === 'completed' ? 'agreement' : 'drafts'
+	try {
+		await deleteUserAgreement(user, targetField, token.value, item.id)
+		items.value = items.value.filter(i => i.id !== item.id)
+		toast.success('Документ успешно удален!')
+	} catch (error) {
+		toast.error('Ошибка при удалении документа!')
+		console.error('Ошибка при удалении:', error)
+	}
+}
+
 watch(mode, getItems)
 
 onMounted(async () => {
@@ -46,6 +59,11 @@ onMounted(async () => {
 <template>
 	<main class="profile animate__animated animate__fadeIn">
 		<SProfileHeader :user="user" @exit="logout" />
-		<SProfileList :items="items" :mode="mode" @change-mode="changeMode" />
+		<SProfileList
+			:items="items"
+			:mode="mode"
+			@change-mode="changeMode"
+			@delete="deleteItem"
+		/>
 	</main>
 </template>

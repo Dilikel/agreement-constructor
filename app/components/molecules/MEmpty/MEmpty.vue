@@ -1,8 +1,7 @@
 <template>
 	<div class="m-empty">
-		<h3 class="m-empty__message">
-			Здесь пока нет данных. Пожалуйста, добавьте документы.
-		</h3>
+		<h3>Здесь пока нет данных. Пожалуйста, создайте документы.</h3>
+		<ALinkButton name="Создать" to="/constructor" />
 	</div>
 </template>
 

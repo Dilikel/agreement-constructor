@@ -6,8 +6,6 @@ import { useAgreementStore } from '~/stores/agreement'
 import { updateUser } from '~/utils/updateUser'
 import { agreementConfig } from '~/config/agreementFields'
 
-useHead({ title: 'Конструктор публичной оферты' })
-
 const { fetchUser } = useAuth()
 const toast = useToast()
 const userStore = useUserStore()
@@ -136,6 +134,6 @@ onMounted(async () => {
 			:options="options"
 			@change="changeType"
 		/>
-		<SAgreementPreview :user="user" :token="token" />
+		<SAgreementPreview :user="user" />
 	</main>
 </template>

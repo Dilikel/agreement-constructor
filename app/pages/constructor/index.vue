@@ -99,6 +99,6 @@ onMounted(() => {
 			:config="config"
 			@change="changeType"
 		/>
-		<SAgreementPreview :user="user" :token="token" />
+		<SAgreementPreview :user="user" />
 	</main>
 </template>

@@ -6,13 +6,13 @@ import { updateUser, deleteUserAgreement } from '~/utils/updateUser'
 
 const props = defineProps({
 	user: Object,
-	token: String,
 })
 
 const agreementStore = useAgreementStore()
 const toast = useToast()
 const downloadMode = ref('docx')
 const iframeSrc = ref('')
+const token = useCookie('token')
 
 function updatePreview() {
 	const rawData = toRaw(agreementStore.agreement)
@@ -38,8 +38,8 @@ function downloadDoc() {
 	downloadMode.value === 'docx'
 		? toast.info('Пока не реализовано')
 		: downloadAgreementPdf(rawData, toast),
-		updateUser(props.user, 'agreement', props.token),
-		deleteUserAgreement(props.user, 'drafts', props.token, rawData.id)
+		updateUser(props.user, 'agreement', token.value),
+		deleteUserAgreement(props.user, 'drafts', token.value, rawData.id)
 }
 </script>
 

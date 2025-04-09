@@ -8,6 +8,7 @@ import { agreementConfig } from '~/config/agreementFields'
 useHead({ title: 'Конструктор публичной оферты' })
 
 const agreementStore = useAgreementStore()
+agreementStore.resetAgreement()
 const token = useCookie('token')
 const { fetchUser } = useAuth()
 const user = computed(() => useUserStore().getUser)

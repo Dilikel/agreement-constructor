@@ -13,14 +13,11 @@ const agreementStore = useAgreementStore()
 const route = useRoute()
 const token = useCookie('token')
 const agreementId = route.params.id
-
 const user = computed(() => userStore.getUser)
 const type = computed(() => agreementStore.agreement.type)
-
 const config = computed(
 	() => agreementConfig[type.value] || { inputs: [], questions: [] }
 )
-
 const options = [
 	{ label: 'Юридическое лицо', value: 'person' },
 	{ label: 'Индивидуальный предприниматель', value: 'ip' },
@@ -28,7 +25,6 @@ const options = [
 	{ label: 'Физическое лицо', value: 'Individual' },
 	{ label: 'Иностранный гражданин', value: 'foreigner' },
 ]
-
 const formData = reactive({
 	place: '',
 	date: '',

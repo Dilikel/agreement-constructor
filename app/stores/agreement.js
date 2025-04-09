@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useAgreementStore = defineStore('AgreementStore', {
 	state: () => ({
 		agreement: {
-			id: 0,
+			id: null,
 			type: 'person',
 			data: {},
 		},
@@ -21,6 +21,13 @@ export const useAgreementStore = defineStore('AgreementStore', {
 				this.agreement.data = {}
 			}
 			this.agreement.data[key] = value
+		},
+		resetAgreement() {
+			this.agreement = {
+				id: null,
+				type: 'person',
+				data: {},
+			}
 		},
 	},
 

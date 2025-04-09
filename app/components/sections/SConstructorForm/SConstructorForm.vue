@@ -1,64 +1,11 @@
 <script setup>
-import { agreementConfig } from '~/config/agreementFields'
-import { useAgreementStore } from '~/stores/agreement'
-
-const agreementStore = useAgreementStore()
-const props = defineProps({
+defineProps({
 	options: Array,
 	type: String,
+	formData: Object,
+	config: Object,
 })
 const emit = defineEmits(['change'])
-const formData = reactive({
-	place: '',
-	date: '',
-})
-const config = computed(
-	() => agreementConfig[props.type] || { inputs: [], questions: [] }
-)
-
-watch(
-	() => props.type,
-	() => {
-		Object.keys(formData).forEach(key => {
-			if (key !== 'place' && key !== 'date') delete formData[key]
-		})
-		const storedData = agreementStore.agreement.data || {}
-		const currentConfig = config.value || { inputs: [], questions: [] }
-		;(currentConfig.inputs || []).forEach(input => {
-			formData[input.model] = storedData[input.model] ?? ''
-		})
-		formData.place ??= storedData.place ?? ''
-		formData.date ??= storedData.date ?? ''
-		;(currentConfig.questions || []).forEach(q => {
-			formData[q.model] = storedData[q.model] ?? q.default ?? ''
-			;(q.yesInputs || []).forEach(input => {
-				formData[input.model] = storedData[input.model] ?? ''
-			})
-			;(q.noInputs || []).forEach(input => {
-				formData[input.model] = storedData[input.model] ?? ''
-			})
-
-			if (q.inputsByOption) {
-				Object.values(q.inputsByOption)
-					.flat()
-					.forEach(input => {
-						formData[input.model] = storedData[input.model] ?? ''
-					})
-			}
-		})
-	},
-	{ immediate: true }
-)
-
-watch(
-	formData,
-	newData => {
-		Object.entries(newData).forEach(([key, value]) => {
-			agreementStore.updateDataField(key, value)
-		})
-	},
-	{ deep: true }
-)
 </script>
 
 <template>

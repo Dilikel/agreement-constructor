@@ -36,9 +36,9 @@ function changeMode(newMode) {
 	mode.value = newMode
 }
 
-async function deleteItem(item) {
+async function deleteItem(itemId) {
 	try {
-		await deleteUserAgreement(user, mode.value, token.value, item.id)
+		await deleteUserAgreement(user, mode.value, token.value, itemId)
 		await fetchUser()
 		getItems()
 		toast.success('Документ успешно удален!')

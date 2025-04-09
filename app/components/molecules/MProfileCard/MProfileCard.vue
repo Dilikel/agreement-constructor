@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from 'vue'
 import { downloadAgreementPdf } from '~/utils/generatePdf'
 import { useToast } from 'vue-toastification'
 
@@ -34,7 +33,10 @@ const emit = defineEmits(['delete'])
 
 <template>
 	<div class="m-profile-card">
-		<div class="m-profile-card__header">
+		<div
+			class="m-profile-card__header"
+			@click="navigateTo(`/constructor/${props.item.id}`)"
+		>
 			<h3>
 				{{
 					props.item.data.organizationName || 'Вы не ввели название организации'
@@ -46,7 +48,7 @@ const emit = defineEmits(['delete'])
 			<p><strong>Тип:</strong> {{ typeLabel }}</p>
 		</div>
 		<div class="m-profile-card__footer">
-			<AExitButton @click="emit('delete', props.item)">Удалить</AExitButton>
+			<AExitButton @click="emit('delete', props.id)">Удалить</AExitButton>
 			<AButton @click="downloadPdf" name="Скачать PDF" :active="true" />
 		</div>
 	</div>

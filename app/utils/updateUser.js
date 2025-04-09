@@ -8,9 +8,18 @@ export async function updateUser(user, targetField = 'drafts', token) {
 		console.warn('Нет ID пользователя')
 		return
 	}
-	const currentList = rawUser[targetField] || []
+
 	const newAgreement = agreementStore.agreement
-	const updatedList = [...currentList, newAgreement]
+	const currentList = rawUser[targetField] || []
+
+	const updatedList = [...currentList]
+	const index = updatedList.findIndex(item => item.id === newAgreement.id)
+
+	if (index !== -1) {
+		updatedList[index] = newAgreement
+	} else {
+		updatedList.push(newAgreement)
+	}
 
 	try {
 		const response = await $fetch(

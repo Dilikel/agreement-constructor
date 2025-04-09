@@ -21,13 +21,13 @@ const emit = defineEmits(['change-mode'], ['delete'])
 					@click="emit('change-mode', 'drafts')"
 				/>
 			</div>
-			<MEmpty v-if="!items || items.length === 0" v-auto-animate />
+			<MEmpty v-if="!items || items.length === 0" />
 			<div class="s-profile-list-items" v-auto-animate v-else>
 				<MProfileCard
 					v-for="(item, index) in items"
 					:key="index"
 					:item="item"
-					@delete="emit('delete', item)"
+					@delete="emit('delete', item.id)"
 				/>
 			</div>
 		</div>

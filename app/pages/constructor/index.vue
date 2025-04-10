@@ -4,26 +4,23 @@ import { updateUser } from '~/utils/updateUser'
 import { useUserStore } from '~/stores/user'
 import { useAuth } from '~/composables/useAuth'
 import { agreementConfig } from '~/config/agreementFields'
+import { options } from '~/constans/options'
 
 useHead({ title: 'Конструктор публичной оферты' })
 
 const agreementStore = useAgreementStore()
 agreementStore.resetAgreement()
+
 const token = useCookie('token')
 const { fetchUser } = useAuth()
 const user = computed(() => useUserStore().getUser)
 const type = computed(() => agreementStore.agreement.type)
-const options = [
-	{ label: 'Юридическое лицо', value: 'person' },
-	{ label: 'Индивидуальный предприниматель', value: 'ip' },
-	{ label: 'Самозанятый гражданин', value: 'self-employed' },
-	{ label: 'Физическое лицо', value: 'Individual' },
-	{ label: 'Иностранный гражданин', value: 'foreigner' },
-]
+
 const formData = reactive({
 	place: '',
 	date: '',
 })
+
 const config = computed(
 	() => agreementConfig[type.value] || { inputs: [], questions: [] }
 )
@@ -93,6 +90,7 @@ onMounted(() => {
 <template>
 	<main class="constructor animate__animated animate__fadeIn">
 		<SConstructorForm
+			v-if="type && config && options"
 			:options="options"
 			:type="type"
 			:form-data="formData"

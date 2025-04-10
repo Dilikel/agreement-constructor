@@ -1,4 +1,6 @@
 <script setup>
+import { profileMode } from '~/constans/profileMode'
+
 const props = defineProps({
 	items: Array,
 	mode: String,
@@ -12,13 +14,13 @@ const emit = defineEmits(['change-mode'], ['delete'])
 			<div class="s-profile-list-action">
 				<AButton
 					name="Готовые документы"
-					:active="mode === 'agreement'"
-					@click="emit('change-mode', 'agreement')"
+					:active="mode === profileMode.agreement"
+					@click="emit('change-mode', profileMode.agreement)"
 				/>
 				<AButton
 					name="Черновики"
-					:active="mode === 'drafts'"
-					@click="emit('change-mode', 'drafts')"
+					:active="mode === profileMode.drafts"
+					@click="emit('change-mode', profileMode.drafts)"
 				/>
 			</div>
 			<MEmpty v-if="!items || items.length === 0" />

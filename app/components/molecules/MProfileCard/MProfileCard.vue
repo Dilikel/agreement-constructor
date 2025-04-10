@@ -1,22 +1,16 @@
 <script setup>
 import { downloadAgreementPdf } from '~/utils/generatePdf'
 import { useToast } from 'vue-toastification'
+import { options } from '~/constans/options'
 
 const props = defineProps({
 	item: Object,
 })
 const toast = useToast()
 
-const typeLabels = {
-	person: 'Юридическое лицо',
-	ip: 'Индивидуальный предприниматель',
-	'self-employed': 'Самозанятый',
-	Individual: 'Физическое лицо',
-	foreigner: 'Иностранец',
-}
-
 const typeLabel = computed(() => {
-	return typeLabels[props.item.type] || 'Неизвестный тип'
+	const match = options.find(opt => opt.value === props.item.type)
+	return match?.label || 'Неизвестный тип'
 })
 
 const formattedDate = computed(() => {

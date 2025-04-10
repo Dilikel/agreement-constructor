@@ -5,6 +5,7 @@ import { useToast } from 'vue-toastification'
 import { useAgreementStore } from '~/stores/agreement'
 import { updateUser } from '~/utils/updateUser'
 import { agreementConfig } from '~/config/agreementFields'
+import { options } from '~/constans/options'
 
 const { fetchUser } = useAuth()
 const toast = useToast()
@@ -18,16 +19,20 @@ const type = computed(() => agreementStore.agreement.type)
 const config = computed(
 	() => agreementConfig[type.value] || { inputs: [], questions: [] }
 )
-const options = [
-	{ label: 'Юридическое лицо', value: 'person' },
-	{ label: 'Индивидуальный предприниматель', value: 'ip' },
-	{ label: 'Самозанятый гражданин', value: 'self-employed' },
-	{ label: 'Физическое лицо', value: 'Individual' },
-	{ label: 'Иностранный гражданин', value: 'foreigner' },
-]
+
 const formData = reactive({
 	place: '',
 	date: '',
+})
+
+const filterOptions = computed(() => {
+	if (!type.value) return options
+
+	const selected = options.find(opt => opt.value === type.value)
+	if (!selected) return options
+
+	const rest = options.filter(opt => opt.value !== type.value)
+	return [selected, ...rest]
 })
 
 function syncDraftToUserStore() {
@@ -128,10 +133,11 @@ onMounted(async () => {
 <template>
 	<main class="constructor animate__animated animate__fadeIn">
 		<SConstructorForm
+			v-if="type && config && filterOptions"
 			:type="type"
 			:form-data="formData"
 			:config="config"
-			:options="options"
+			:options="filterOptions"
 			@change="changeType"
 		/>
 		<SAgreementPreview :user="user" />

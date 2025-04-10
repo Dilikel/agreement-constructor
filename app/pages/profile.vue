@@ -3,6 +3,7 @@ import { useAuth } from '~/composables/useAuth'
 import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
 import { deleteUserAgreement } from '~/utils/updateUser'
+import { profileMode } from '~/constans/profileMode'
 
 definePageMeta({
 	middleware: ['auth'],
@@ -16,13 +17,15 @@ const user = computed(() => useUserStore().getUser)
 const { fetchUser } = useAuth()
 const toast = useToast()
 const token = useCookie('token')
-const mode = ref('agreement')
+const mode = ref(profileMode.agreement)
 const items = ref([])
 
 function getItems() {
 	if (!user.value) return
 	items.value =
-		mode.value === 'agreement' ? user.value.agreement : user.value.drafts
+		mode.value === profileMode.agreement
+			? user.value.agreement
+			: user.value.drafts
 }
 
 function logout() {

@@ -179,6 +179,12 @@ export const agreementConfig = {
 						placeholder: 'Отправляется пользователю / Выбирается пользователем',
 						model: 'userAccountLoginPassword',
 					},
+					{
+						label:
+							'Укажите данные для регистрации (только если пользователь указывает данные при регистрации )',
+						placeholder: 'Укажите данные для регистрации',
+						model: 'userDataForRegistration',
+					},
 				],
 			},
 		],

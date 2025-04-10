@@ -27,28 +27,100 @@ function formattedDate(date) {
 	return parsed.toLocaleDateString('ru-RU')
 }
 
-function getSubject(d) {
-	if (d.subject === 'subjectServices' || '-') {
-		if (d.subjectServiceType === 'Информационные' || '-') {
-			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю информационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
-				d.subjectServicesProvided || '-'
-			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
-		}
-		if (d.subjectServiceType === 'Консультационные' || '-') {
-			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю консультационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
-				d.subjectServicesProvided || '-'
-			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
-		}
-		if (d.subjectServiceType === 'Информационно-консультационные' || '-') {
-			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю информационно-консультационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
-				d.subjectServicesProvided || '-'
-			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
-		}
-		if (d.subjectServiceType === 'Свой вариант' || '-') {
-			return `2.1. ${d.subjectServicesProvided || '-'}`
-		}
+function getUserAccountBlock(d, indentText = '', indent = 0) {
+	if (d.hasUserAccount !== 'yes') {
+		return `\n\n${indentText}${indent}. Стороны не вправе ссылаться на незаключенность Договора по причине отсутствия у Пользователя личного кабинета.`
 	}
-	if (d.subject === 'subjectLicense' || '-') {
+
+	let result = `\n\n${indentText}${(indent =
+		indent +
+		1)}. Пользователь получает доступ к Сервису после регистрации/авторизации в Личном кабинете.`
+	result += `\n\n${indentText}${(indent =
+		indent +
+		1)}. Пользователь обязуется обновлять персональные данные в случае их изменения.`
+
+	if (d.userAccountRegistration === 'Нет') {
+		result +=
+			d.userAccountLoginPassword === 'Отправляется пользователю'
+				? `\n\n${indentText}${(indent =
+						indent +
+						1)}. Администрация предоставляет логин и пароль Пользователю.`
+				: `\n\n${indentText}${(indent =
+						indent +
+						1)}. Пользователь самостоятельно устанавливает логин и пароль.`
+	} else if (d.userAccountRegistration === 'Да') {
+		result += `\n\n${indentText}${(indent =
+			indent + 1)}. Пользователь предоставляет Администрации ${
+			d.userDataForRegistration || '-'
+		} для регистрации.`
+		result +=
+			d.userAccountLoginPassword === 'Отправляется пользователю'
+				? `\n\n${indentText}${(indent =
+						indent +
+						1)}. Администрация предоставляет логин и пароль Пользователю.`
+				: `\n\n${indentText}${(indent =
+						indent +
+						1)}. Пользователь самостоятельно устанавливает логин и пароль.`
+	}
+
+	result += `\n\n${indentText}${(indent =
+		indent +
+		1)}. Стороны не вправе ссылаться на незаключенность Договора по причине отсутствия у Пользователя Личного кабинета.`
+	result += `\n\n${indentText}${(indent =
+		indent + 1)}. Новая редакция Оферты вступает в силу с момента публикации.`
+
+	return result
+}
+
+function getLicenseSubjectText(d) {
+	let text = `2.1. Пользователь получает неисключительное право использования Объекта лицензии – ${
+		d.licenseObject || '-'
+	}.`
+	text += `\n\n2.2. Пользователь обязуется использовать Объект лицензии только в рамках функционала, предоставляемого Сервисом.`
+	text += `\n\n2.3. Пользователь не вправе передавать полученные права третьим лицам.`
+	text += `\n\n2.4. Объем и срок действия лицензии: ${
+		d.licenseScope || '-'
+	} / ${d.licenseTerm || '-'}.`
+	text += getUserAccountBlock(d, '2.', 5)
+	return text
+}
+
+function getSalesSubjectText(d) {
+	let text = `2.1. Пользователь приобретает Товар, указанный в Сервисе – ${
+		d.goodsName || '-'
+	}.`
+	text += `\n\n2.2. Характеристики, стоимость и количество определяются при оформлении заказа.`
+	text += `\n\n2.3. Право собственности переходит в момент передачи Товара Пользователю.`
+	text += getUserAccountBlock(d, '2.', 4)
+	return text
+}
+
+function getServicesSubjectText(d) {
+	const serviceTypes = {
+		Информационные: 'информационные услуги',
+		Консультационные: 'консультационные услуги',
+		'Информационно-консультационные': 'информационно-консультационные услуги',
+	}
+
+	let mainText =
+		serviceTypes[d.subjectServiceType] || d.subjectServicesProvided || '-'
+	let text = `2.1. Администрация оказывает Пользователю ${mainText}.`
+	text += getUserAccountBlock(d, '2.', 2)
+	return text
+}
+
+function getSubject(d) {
+	switch (d.subject) {
+		case 'subjectServices':
+			return getServicesSubjectText(d)
+		case 'subjectLicense':
+			return getLicenseSubjectText(d)
+		case 'subjectSales':
+			return getSalesSubjectText(d)
+		case 'subjectCustom':
+			return `2.1. ${d.subjectCustom || '-'}`
+		default:
+			return ''
 	}
 }
 

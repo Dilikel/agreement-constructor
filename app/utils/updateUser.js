@@ -5,7 +5,6 @@ export async function updateUser(user, targetField = 'drafts', token) {
 	const agreementStore = useAgreementStore()
 	const rawUser = typeof user === 'function' ? user() : user?.value ?? user
 	if (!rawUser?.id) {
-		console.warn('Нет ID пользователя')
 		return
 	}
 

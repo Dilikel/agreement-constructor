@@ -88,6 +88,11 @@ export const agreementConfig = {
 				inputsByOption: {
 					services: [
 						{
+							label: 'Вид услуги:',
+							placeholder: 'Вид услуги',
+							model: 'serviceType',
+						},
+						{
 							label: 'Перечислите оказываемые услуги:',
 							placeholder: 'Перечислите оказываемые услуги',
 							model: 'servicesProvided',

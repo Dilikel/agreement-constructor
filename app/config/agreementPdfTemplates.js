@@ -20,6 +20,13 @@ function getServiceType(d) {
 	}
 }
 
+function formattedDate(date) {
+	if (!date) return '-'
+	const parsed = new Date(date)
+	if (isNaN(parsed)) return '-'
+	return parsed.toLocaleDateString('ru-RU')
+}
+
 export const agreementPdfTemplates = {
 	person: d => {
 		const hasRepresentative = d.hasRepresentative === 'yes'
@@ -31,7 +38,7 @@ export const agreementPdfTemplates = {
 				columns: [
 					{ text: `Место публикации: ${d.place || '-'}`, style: 'docMeta' },
 					{
-						text: `Дата: ${d.date || '-'}`,
+						text: `Дата: ${formattedDate(d.date) || '-'}`,
 						style: 'docMeta',
 						alignment: 'right',
 					},

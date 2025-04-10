@@ -1,9 +1,14 @@
 .s-profile-list {
-	&-action {
+	&-header {
 		display: flex;
-		margin-bottom: 20px;
 		align-items: center;
-		gap: 20px;
+		justify-content: space-between;
+		&-action {
+			display: flex;
+			margin-bottom: 20px;
+			align-items: center;
+			gap: 20px;
+		}
 	}
 	&-items {
 		display: grid;

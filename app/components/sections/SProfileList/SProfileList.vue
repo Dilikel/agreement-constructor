@@ -11,17 +11,20 @@ const emit = defineEmits(['change-mode'], ['delete'])
 <template>
 	<section class="s-profile-list">
 		<div class="container" v-auto-animate>
-			<div class="s-profile-list-action">
-				<AButton
-					name="Готовые документы"
-					:active="mode === profileMode.agreement"
-					@click="emit('change-mode', profileMode.agreement)"
-				/>
-				<AButton
-					name="Черновики"
-					:active="mode === profileMode.drafts"
-					@click="emit('change-mode', profileMode.drafts)"
-				/>
+			<div class="s-profile-list-header">
+				<div class="s-profile-list-header-action">
+					<AButton
+						name="Готовые документы"
+						:active="mode === profileMode.agreement"
+						@click="emit('change-mode', profileMode.agreement)"
+					/>
+					<AButton
+						name="Черновики"
+						:active="mode === profileMode.drafts"
+						@click="emit('change-mode', profileMode.drafts)"
+					/>
+				</div>
+				<ALinkButton name="Создать документ" to="/constructor" />
 			</div>
 			<MEmpty v-if="!items || items.length === 0" />
 			<div class="s-profile-list-items" v-auto-animate v-else>

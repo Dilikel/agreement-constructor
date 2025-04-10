@@ -35,42 +35,42 @@ export const agreementConfig = {
 				type: 'select',
 				question: 'Где размещается оферта (вид сервиса):',
 				model: 'serviceType',
-				default: 'site',
+				default: 'serviceTypeSite',
 				options: [
-					{ label: 'Сайт', value: 'site' },
-					{ label: 'Приложение', value: 'app' },
-					{ label: 'Свой вариант', value: 'custom' },
+					{ label: 'Сайт', value: 'serviceTypeSite' },
+					{ label: 'Приложение', value: 'serviceTypeApp' },
+					{ label: 'Свой вариант', value: 'serviceTypeCustom' },
 				],
 				inputsByOption: {
-					site: [
+					serviceTypeSite: [
 						{
 							label: 'Укажите ссылку на сайт:',
 							placeholder: 'https://example.com',
-							model: 'siteUrl',
+							model: 'serviceSiteUrl',
 						},
 					],
-					app: [
+					serviceTypeApp: [
 						{
 							label: 'Название приложения:',
 							placeholder: 'Название приложения',
-							model: 'appName',
+							model: 'serviceAppName',
 						},
 						{
 							label: 'Укажите ссылку для скачивания:',
 							placeholder: 'https://example.com',
-							model: 'appUrl',
+							model: 'serviceAppUrl',
 						},
 					],
-					custom: [
+					serviceTypeCustomService: [
 						{
 							label: 'Название сервиса:',
 							placeholder: 'Название сервиса',
-							model: 'serviceName',
+							model: 'serviceCustomName',
 						},
 						{
 							label: 'Описание сервиса:',
 							placeholder: 'Описание сервиса',
-							model: 'serviceDescription',
+							model: 'serviceCustomDescription',
 						},
 					],
 				},
@@ -79,49 +79,53 @@ export const agreementConfig = {
 				type: 'select',
 				question: 'Предмет договора:',
 				model: 'subject',
+				default: 'subjectServices',
 				options: [
-					{ label: 'Оказание услуг', value: 'services' },
-					{ label: 'Право использования сервиса (лицензия)', value: 'license' },
-					{ label: 'Продажа товаров', value: 'sales' },
-					{ label: 'Свой вариант', value: 'custom' },
+					{ label: 'Оказание услуг', value: 'subjectServices' },
+					{
+						label: 'Право использования сервиса (лицензия)',
+						value: 'subjectLicense',
+					},
+					{ label: 'Продажа товаров', value: 'subjectSales' },
+					{ label: 'Свой вариант', value: 'subjectCustom' },
 				],
 				inputsByOption: {
-					services: [
+					subjectServices: [
 						{
 							label: 'Вид услуги:',
 							placeholder: 'Вид услуги',
-							model: 'serviceType',
+							model: 'subjectServiceType',
 						},
 						{
 							label: 'Перечислите оказываемые услуги:',
 							placeholder: 'Перечислите оказываемые услуги',
-							model: 'servicesProvided',
+							model: 'subjectServicesProvided',
 						},
 					],
-					license: [
+					subjectLicense: [
 						{
 							label: 'Пользователь вправе пользоваться сервисом:',
 							placeholder: 'Исключительно для собственных нужд',
-							model: 'allowedUserRightsLicense',
+							model: 'subjectAllowedUserRightsLicense',
 						},
 						{
 							label: 'Пользователю запрещается:',
 							placeholder: 'Копировать или изменять код Сервиса',
-							model: 'prohibitedUserRightsLicense',
+							model: 'subjectProhibitedUserRightsLicense',
 						},
 					],
-					sales: [
+					subjectSales: [
 						{
 							label: 'Перечислите продаваемые товары:',
 							placeholder: 'Перечислите продаваемые товары',
-							model: 'productsSold',
+							model: 'subjectProductsSold',
 						},
 					],
-					custom: [
+					subjectCustom: [
 						{
 							label: 'Укажите предмет договора:',
 							placeholder: 'Укажите предмет договора',
-							model: 'customSubject',
+							model: 'subjectCustom',
 						},
 					],
 				},
@@ -130,6 +134,7 @@ export const agreementConfig = {
 				type: 'select',
 				question: 'Территория действия:',
 				model: 'territory',
+				default: 'world',
 				options: [
 					{
 						label: 'Весь мир',

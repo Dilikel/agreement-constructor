@@ -1,21 +1,21 @@
 function getServiceType(d) {
-	if (d.serviceType === 'site') {
+	if (d.serviceType === 'serviceTypeSite') {
 		return `1.1.4. Сервис - веб-сайт, расположенный в сети интернет по адресу ${
-			d.siteUrl || '-'
+			d.serviceSiteUrl || '-'
 		} (далее - «Сервис»).`
 	}
 
-	if (d.serviceType === 'app') {
+	if (d.serviceType === 'serviceTypeApp') {
 		return `1.1.4. Сервис - программное обеспечение ${
-			d.appName || '-'
+			d.serviceAppName || '-'
 		}, доступное для скачивания в сети интернет по адресу ${
-			d.appUrl || '-'
+			d.serviceAppUrl || '-'
 		} (далее - «Сервис»).`
 	}
 
-	if (d.serviceType === 'custom') {
-		return `1.1.4. Сервис - ${d.serviceName || '-'}, ${
-			d.serviceDescription || '-'
+	if (d.serviceType === 'serviceTypeCustom') {
+		return `1.1.4. Сервис - ${d.serviceCustomName || '-'}, ${
+			d.serviceCustomDescription || '-'
 		} (далее - «Сервис»).`
 	}
 }

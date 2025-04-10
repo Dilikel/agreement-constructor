@@ -92,8 +92,10 @@ export const agreementConfig = {
 				inputsByOption: {
 					subjectServices: [
 						{
-							label: 'Вид услуги:',
-							placeholder: 'Вид услуги',
+							label:
+								'Вид услуги (Информационные / Консультационные / Информационно-консультационные / Свой вариант):',
+							placeholder:
+								'Информационные / Консультационные / Информационно-консультационные / Свой вариант',
 							model: 'subjectServiceType',
 						},
 						{
@@ -116,9 +118,10 @@ export const agreementConfig = {
 					],
 					subjectSales: [
 						{
-							label: 'Перечислите продаваемые товары:',
-							placeholder: 'Перечислите продаваемые товары',
-							model: 'subjectProductsSold',
+							label:
+								'Осуществляется доставка (Нет / Собственными силами / Силами третьих лиц):',
+							placeholder: 'Нет / Собственными силами / Силами третьих лиц',
+							model: 'subjectSalesDelivery',
 						},
 					],
 					subjectCustom: [
@@ -134,27 +137,27 @@ export const agreementConfig = {
 				type: 'select',
 				question: 'Территория действия:',
 				model: 'territory',
-				default: 'world',
+				default: 'territoryWorld',
 				options: [
 					{
 						label: 'Весь мир',
-						value: 'world',
+						value: 'territoryWorld',
 					},
 					{
 						label: 'Российская Федерация',
-						value: 'russia',
+						value: 'territoryRussia',
 					},
 					{
 						label: 'Свой вариант',
-						value: 'custom',
+						value: 'territoryCustom',
 					},
 				],
 				inputsByOption: {
-					custom: [
+					territoryCustom: [
 						{
 							label: 'Укажите страну:',
 							placeholder: 'Россия',
-							model: 'customTerritory',
+							model: 'territoryCustomValue',
 						},
 					],
 				},
@@ -164,6 +167,19 @@ export const agreementConfig = {
 				question: 'Учетная запись пользователя:',
 				model: 'hasUserAccount',
 				default: 'no',
+				yesInputs: [
+					{
+						label: 'Пользователь указывает данные при регистрации (Да / Нет):',
+						placeholder: 'Да / Нет',
+						model: 'userAccountRegistration',
+					},
+					{
+						label:
+							'Логин и пароль (Отправляется пользователю / Выбирается пользователем) ',
+						placeholder: 'Отправляется пользователю / Выбирается пользователем',
+						model: 'userAccountLoginPassword',
+					},
+				],
 			},
 		],
 	},

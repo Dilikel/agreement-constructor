@@ -20,9 +20,12 @@
 		&-items {
 			grid-template-columns: 1fr;
 		}
-		&-action {
+		&-header {
 			flex-direction: column;
-			gap: 10px;
+			&-action {
+				flex-direction: column;
+				gap: 10px;
+			}
 		}
 	}
 }

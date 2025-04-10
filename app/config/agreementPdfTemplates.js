@@ -27,6 +27,31 @@ function formattedDate(date) {
 	return parsed.toLocaleDateString('ru-RU')
 }
 
+function getSubject(d) {
+	if (d.subject === 'subjectServices' || '-') {
+		if (d.subjectServiceType === 'Информационные' || '-') {
+			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю информационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
+				d.subjectServicesProvided || '-'
+			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
+		}
+		if (d.subjectServiceType === 'Консультационные' || '-') {
+			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю консультационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
+				d.subjectServicesProvided || '-'
+			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
+		}
+		if (d.subjectServiceType === 'Информационно-консультационные' || '-') {
+			return `2.1. В соответствии с настоящим Договором-Офертой Администрация обязуется оказать Пользователю информационно-консультационные услуги. Во исполнение настоящего Договора Администрация обязуется ${
+				d.subjectServicesProvided || '-'
+			}, оказывать иные услуги в соответствии с информацией, предоставленной в Сервисе.`
+		}
+		if (d.subjectServiceType === 'Свой вариант' || '-') {
+			return `2.1. ${d.subjectServicesProvided || '-'}`
+		}
+	}
+	if (d.subject === 'subjectLicense' || '-') {
+	}
+}
+
 export const agreementPdfTemplates = {
 	person: d => {
 		const hasRepresentative = d.hasRepresentative === 'yes'
@@ -94,6 +119,10 @@ export const agreementPdfTemplates = {
 					{
 						text: '2. Предмет договора и общие положение',
 						style: 'sectionTitle',
+					},
+					{
+						text: getSubject(d),
+						style: 'paragraph',
 					},
 				],
 			},

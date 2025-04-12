@@ -33,7 +33,12 @@ const emit = defineEmits(['delete'])
 		>
 			<h3>
 				{{
-					props.item.data.organizationName || 'Вы не ввели название организации'
+					props.item.data.organizationName ||
+					props.item.data.ipName ||
+					props.item.data.selfEmployedName ||
+					props.item.data.IndividualName ||
+					props.item.data.foreignerName ||
+					'Вы не ввели название организации'
 				}}
 			</h3>
 			<p class="date">Дата публикации: {{ formattedDate }}</p>
@@ -42,7 +47,7 @@ const emit = defineEmits(['delete'])
 			<p><strong>Тип:</strong> {{ typeLabel }}</p>
 		</div>
 		<div class="m-profile-card__footer">
-			<AExitButton @click="emit('delete', props.id)">Удалить</AExitButton>
+			<AExitButton @click="emit('delete', props.item.id)">Удалить</AExitButton>
 			<AButton @click="downloadPdf" name="Скачать PDF" :active="true" />
 		</div>
 	</div>

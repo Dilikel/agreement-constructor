@@ -26,7 +26,7 @@ const emit = defineEmits(['change'])
 				<AInput
 					v-model="formData.place"
 					label="Укажите место публикации"
-					placeholder="г. N"
+					placeholder="город N"
 					required
 				/>
 				<AInput

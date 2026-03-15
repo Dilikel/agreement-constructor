@@ -1,5 +1,5 @@
-<script setup>
-const footerItems = [
+<script setup lang="ts">
+const footerItems: { name: string; to: string; icon: string }[] = [
 	{
 		name: 'Главная',
 		to: '/',
@@ -16,6 +16,7 @@ const footerItems = [
 		icon: '',
 	},
 ]
+const currentYear: number = new Date().getFullYear()
 </script>
 
 <template>
@@ -26,7 +27,7 @@ const footerItems = [
 				<AMenuItem v-for="item in footerItems" :key="item.name" v-bind="item" />
 			</nav>
 			<p class="s-footer-rights">
-				&copy; 2024 Agreement Constructor. Все права защищены.
+				&copy; {{ currentYear }} Agreement Constructor. Все права защищены.
 			</p>
 		</div>
 	</footer>
